@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Privacy Guard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<div class="container">
+    <h1>Privacy Guard</h1>
+    <p>Monitoring apps for Camera & Microphone access...</p>
+
+    <!-- Alerts Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>App Name</th>
+                <th>Alert</th>
+            </tr>
+        </thead>
+        <tbody id="alertTable"></tbody>
+    </table>
+
+    <br><br>
+
+    <!-- Logs Section -->
+    <h2 style="color:#0ff; text-align:center;">Activity Logs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Log</th>
+            </tr>
+        </thead>
+        <tbody id="logTable"></tbody>
+    </table>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
