@@ -1,24 +1,27 @@
+/* --- Base Styles (Dark Mode) --- */
 body {
     font-family: Arial, sans-serif;
-    background: #0d1117;
-    color: #c9d1d9;
+    background: #0d1117; /* Very Dark Background */
+    color: #c9d1d9; /* Light Gray Text */
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 50px;
+    padding-top: 20px;
     min-height: 100vh;
 }
 
 .container {
-    background: #161b22;
+    background: #161b22; /* Slightly Lighter Dark Background */
     padding: 30px;
     border-radius: 15px;
-    width: 600px;
-    box-shadow: 0 0 20px rgba(0,255,200,0.2);
+    width: 90%; 
+    max-width: 1200px;
+    box-shadow: 0 0 20px rgba(0,255,200,0.2); 
+    margin: 0 auto;
 }
 
 h1 {
-    color: #0ff;
+    color: #0ff; /* Cyan Heading Color */
     text-align: center;
     margin-bottom: 10px;
 }
@@ -26,12 +29,31 @@ h1 {
 p {
     text-align: center;
     margin-bottom: 20px;
-    color: #8b949e;
+    color: #8b949e; /* Muted Text */
 }
 
+/* Welcome Page Specific Styles */
+.welcome {
+    text-align: center;
+    padding-top: 50px;
+}
+.welcome button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 th, td {
@@ -42,12 +64,13 @@ th, td {
 
 th {
     background: #0d1117;
-    color: #58a6ff;
+    color: #58a6ff; 
 }
 
 .danger {
-    color: #f85149;
+    color: #f85149; /* Red Danger Text */
     font-weight: bold;
+    background: #2a0e0e; 
 }
 
 td {
@@ -56,4 +79,109 @@ td {
 
 tr:hover {
     background: #21262d;
+}
+
+/* --- NEW STYLES FOR OVERALL CRITICAL ALERT --- */
+
+.status-box {
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    transition: opacity 0.3s, box-shadow 0.3s; 
+}
+
+#overall-status {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+/* Style for System Safe (Green Status) */
+.status-green {
+    background: #112a1f; 
+    border: 3px solid #008000;
+    color: #34d058; 
+}
+
+/* Style for CRITICAL ALERT (Red Status) - High Impact! */
+.status-red {
+    background: #3d1717; 
+    border: 3px solid #f85149; 
+    color: #f85149; 
+    animation: pulse 1.5s infinite; 
+    box-shadow: 0 0 10px rgba(248, 81, 73, 0.5);
+}
+
+/* Keyframes for the pulsing effect */
+@keyframes pulse {
+    0% { box-shadow: 0 0 5px rgba(248, 81, 73, 0.5); }
+    50% { box-shadow: 0 0 15px rgba(248, 81, 73, 1); }
+    100% { box-shadow: 0 0 5px rgba(248, 81, 73, 0.5); }
+}
+
+/* Style for Safe Status in the Alerts Table */
+.safe-status {
+    text-align: center;
+    color: #34d058 !important; 
+    font-weight: bold;
+    padding: 20px !important;
+    background-color: #0f1c1f; 
+}
+
+/* --- NEW STYLES FOR LOGGING FEATURE --- */
+#log-controls {
+    text-align: right;
+    margin-bottom: 10px;
+}
+#log-controls h2 {
+    text-align: left;
+    color: #c9d1d9;
+    font-size: 1.2em;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+#log-controls button {
+    background-color: #58a6ff;
+    color: #0d1117;
+    border: none;
+    padding: 8px 15px;
+    font-size: 0.9em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#log-controls button:hover {
+    background-color: #347dff;
+}
+
+.log-area {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    padding: 10px;
+    height: 150px; /* Fixed height for scrolling */
+    overflow-y: scroll; /* Enable scrolling */
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-family: monospace;
+    font-size: 0.85em;
+}
+
+.log-message {
+    margin-bottom: 3px;
+    padding: 2px 0;
+    word-break: break-all;
+}
+.log-safe {
+    color: #8b949e; /* Muted safe log color */
+}
+.log-alert {
+    color: #ffb86c; /* Orange color for specific alerts */
+    font-weight: bold;
+}
+.log-critical {
+    color: #f85149; /* Red color for critical status changes */
+    font-weight: bold;
 }

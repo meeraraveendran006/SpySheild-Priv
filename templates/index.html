@@ -1,41 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Privacy Guard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
-<div class="container">
-    <h1>Privacy Guard</h1>
-    <p>Monitoring apps for Camera & Microphone access...</p>
+    <div class="container">
+        <h1>Privacy Guard</h1>
+        
+        <!-- RESTORED INITIAL MESSAGE -->
+        <p>Monitoring apps for Camera & Microphone access...</p>
+        
+        <!-- CRITICAL STATUS DISPLAY -->
+        <div id="status-box" class="status-box status-{{ status_color }}">
+            <h2 id="overall-status">{{ status }}</h2>
+            <p>Last Analysis: <span id="last-checked">Loading...</span></p>
+        </div>
+        
+        <!-- NEW FEATURE: LOGGING AND DOWNLOAD -->
+        <div id="log-controls">
+            <h2>Activity Log</h2>
+            <!-- Button to trigger the download feature in JavaScript -->
+            <button onclick="downloadLog()">Download Full Log</button> 
+        </div>
+        
+        <!-- Log Display Area -->
+        <div id="activityLog" class="log-area">
+            <!-- Log messages will be inserted here by JavaScript -->
+            <div class="log-message log-safe">Log initialized...</div>
+        </div>
+        
+        <!-- Original Alerts Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>App Name</th>
+                    <th>Alert</th>
+                </tr>
+            </thead>
+            <tbody id="alertTable">
+                <!-- Alerts appear here -->
+            </tbody>
+        </table>
+    </div>
 
-    <!-- Alerts Table -->
-    <table>
-        <thead>
-            <tr>
-                <th>App Name</th>
-                <th>Alert</th>
-            </tr>
-        </thead>
-        <tbody id="alertTable"></tbody>
-    </table>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
-    <br><br>
-
-    <!-- Logs Section -->
-    <h2 style="color:#0ff; text-align:center;">Activity Logs</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Time</th>
-                <th>Log</th>
-            </tr>
-        </thead>
-        <tbody id="logTable"></tbody>
-    </table>
-</div>
-
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Script to make the alert flash if it's red -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusBox = document.getElementById('status-box');
+            
+            // Check if the overall status is RED (Critical Alert)
+            if (statusBox.classList.contains('status-red')) {
+                // Start the flashing/pulsing effect for maximum impact
+                setInterval(() => {
+                    statusBox.style.opacity = (statusBox.style.opacity == 1 || statusBox.style.opacity == '') ? 0.5 : 1;
+                }, 500); // Flashes every half second
+            }
+            
+            // Start the fetching process defined in script.js
+            fetchAlerts(); 
+            setInterval(fetchAlerts, 2000); 
+        });
+    </script>
 </body>
 </html>
